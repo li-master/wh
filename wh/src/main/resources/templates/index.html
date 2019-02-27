@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"></meta>
+<title>Insert title here</title>
+
+<script src="/easyui/jquery-1.11.1.min.js"></script>
+<!-- 访问static路径下资源 -->
+
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+td {
+	padding-left: 15px;
+	height:80px;
+	padding-right: 30px;
+	text-align: center;
+	vertical-align:middle;
+	border-bottom:1px solid #f8f8f8;
+}
+
+table {
+	color: 4b4b4b;
+	border-collapse: collapse;
+}
+
+ul li {
+	display: inline-block;
+	width: 8%;
+}
+</style>
+
+</head>
+<body>
+	<!-- #3d3d4a 米斗灰色-->
+	<div id="top" style="width: 100%; height: 100px; position: fixed;">
+		<ul style="color: #ffffff; margin-left: 60px; margin-top: 40px;">
+			<li>公司名</li>
+			<li>首页</li>
+			<li>全职</li>
+			<li>兼职</li>
+			<li>企业服务</li>
+			<!-- 介绍网站与公司所提供的服务内容 -->
+			<li>关于我们</li>
+			<!-- 介绍公司 -->
+			<li style="width: 30%"></li>
+
+			<li>发布职位</li>
+			<!-- 后台管理或者注册的用户/商家  自主添加工作信息 -->
+			<li>注册登录</li>
+			<!-- 弹出注册 登录div -->
+		</ul>
+
+
+	</div>
+	<!-- 头部 -->
+
+	<!-- 页面点击功能：1工作内容
+				               2公司
+				               3 与发布人沟通 -->
+	<div id="lbzzz"
+		style="width: 100%; height: 400px; float: left; background: url(/img/555.jpg) 0 0 no-repeat #000; background-size: cover; ">
+		
+	</div>
+
+
+
+	<div style="width: 100%; float: left; height: 400px;background-color:#f8f8f8">
+	
+	
+		<table style="width:20%;height:400px;float:right;background-color:white">
+	       <tr>
+				<td>销售员&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red">2-5k</span><br/>襄阳牛肉面</td>
+			</tr>  
+			<tr>
+				<td>销售员</td>
+			</tr> 
+			<tr>
+				<td>销售员</td>
+			</tr> 
+			<tr>
+				<td>销售员</td>
+			</tr> 
+	  </table>
+	  
+		<table
+			style="width: 60%; margin: 0 auto;  margin-left: 200px;background-color:white">
+			
+			<tr onmouseover="trsover(this);" onmouseout="trsout(this);">
+				<td><span style="color: #5dd5c8">销售员</span>&nbsp;&nbsp;&nbsp;<span
+					style="color: red">2-4k</span><br />洪山区光谷&nbsp;要求</td>
+				<td>今晚十点半有限公司<br />卖肉，民营，50人
+				</td>
+				<td id="thistd" onclick="fuck()">吴晗&nbsp;丨hr<br />发布于1月1日
+				</td>
+			</tr>
+			<tr onmouseover="trsover(this);" onmouseout="trsout(this);">
+				<td>大盘鸡</td>
+				<td>大山</td>
+				<td><img src='/img/warn.png' /></td>
+			</tr>
+			<tr onmouseover="trsover(this);" onmouseout="trsout(this);">
+				<td>黄焖鸡</td>
+				<td>熊超</td>
+				<td><img src='/img/warn.png' /></td>
+			</tr>
+			<tr onmouseover="trsover(this);" onmouseout="trsout(this);">
+				<td>老乡鸡</td>
+				<td>吴晗</td>
+				<td><img src='/img/warn.png' /></td>
+			</tr>
+			<tr onmouseover="trsover(this);" onmouseout="trsout(this);">
+				<td>大盘鸡</td>
+				<td>大山</td>
+				<td><img src='/img/warn.png' /></td>
+			</tr>
+
+		</table>
+		
+	
+	</div>
+	<!-- <div th:each="u:${user}">
+		<p th:text="${u.u_id}"></p>
+		<p th:text="${u.u_name}"></p>
+	</div> -->
+
+	<script type="text/javascript">
+$(function() {
+	
+
+})
+	
+/*  trover = function(obj) {
+	 $(obj).attr("style", "BACKGROUND-COLOR: #5dd5c8"); 
+}
+trout = function(obj) {
+	$(obj).attr("style", "BACKGROUND-COLOR: white"); 
+}  */
+trsover = function(obj) {
+	 $(obj).attr("style", "BACKGROUND-COLOR: #f8f8f8"); 
+	 $("#thistd").html("立即沟通"); 
+	 $("#thistd").css("color",'#6adbcf');
+}
+trsout = function(obj) {
+	$(obj).attr("style", "BACKGROUND-COLOR: white"); /* #f6f6f8 */
+} 
+$(window).scroll(function(){//window是原生对象，需要加$转换成jQuery对象
+    var v=($(this).scrollTop())/200;
+    //为什么除以100是因为我希望当$(this).scrollTop()为100的过程中，
+    //透明度由0变为1，$(this).scrollTop()/100得到的值正好与opacity的范围[0,1]相符合。
+   
+	   $("#top").css('backgroundColor','rgba(61,60,74 ,'+v+')'); 
+   
+    
+})
+fuck =function(){
+	
+	$.get('/views/fuck',function(result){
+		
+	});
+}
+
+</script>
+</body>
+</html>
