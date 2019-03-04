@@ -156,10 +156,13 @@ $(window).scroll(function(){//window是原生对象，需要加$转换成jQuery�
    
     
 })
-fuck =function(){
-	
+
+window.onload=function(){
 	$.get('/views/fuck',function(result){
-		
+		result.forEach(val=>{
+			console.log(val.u_id);
+		});
+		//console.log(result);
 	});
 }
 
