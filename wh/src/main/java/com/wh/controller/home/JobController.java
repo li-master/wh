@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.wh.entity.Job;
 import com.wh.service.JobService;
@@ -32,7 +33,7 @@ public class JobController {
 	 * @return
 	 */
 	@RequestMapping("/edit")
-	public String edit(){
-		return "home/job/edit";
+	public ModelAndView edit(ModelAndView vm){
+		return new ModelAndView("home/job/edit");
 	}
 }
