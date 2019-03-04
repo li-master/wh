@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="user")
-public class User {
+public class User extends PageLimit{
 	
 	@Id
 	@Column()
@@ -23,4 +23,7 @@ public class User {
 	
 	@Column()
 	private String u_name;
+	
+	@Column()
+	private String u_password;
 }

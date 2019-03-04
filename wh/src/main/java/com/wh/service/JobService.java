@@ -15,4 +15,8 @@ public interface JobService {
 	
 	Job findOne(int job_id);
 
+	Job save(Job job);
+
+	void delete(Integer id);
+
 }

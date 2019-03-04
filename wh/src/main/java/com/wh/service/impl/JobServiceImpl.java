@@ -29,5 +29,15 @@ public class JobServiceImpl implements JobService {
 	public Job findOne(int job_id) {
 		return dao.findOne(job_id);
 	}
+
+	@Override
+	public Job save(Job job) {
+		return dao.save(job);
+	}
+
+	@Override
+	public void delete(Integer id) {
+		dao.delete(id);
+	}
 	
 }

@@ -1,7 +1,7 @@
 package com.wh.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import com.wh.entity.User;
 
@@ -12,7 +12,7 @@ import com.wh.entity.User;
 * 类说明 
 * ps:
 */
-public interface UserRepository extends JpaRepository<User, Integer>{
+public interface UserRepository extends JpaRepository<User, Integer>,JpaSpecificationExecutor<User>{
 
 /*	@Query(value="select * from user where u_id=?1 and u_name=?2",nativeQuery=true)
 	User findONe(int u_id);*/

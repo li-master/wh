@@ -3,6 +3,7 @@ package com.wh.controller.home;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,5 +26,10 @@ public class UserController {
 	@RequestMapping("/all")
 	public List<User> findAll(){
 		return user_service.findAll();
+	}
+	
+	@RequestMapping("/pageAll")
+	public Page<User> findAll(User user){
+		return user_service.findAll(user);
 	}
 }

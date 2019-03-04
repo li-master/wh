@@ -1,5 +1,6 @@
 package com.wh.controller.home;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,25 @@ public class JobController {
 		return job_service.findAll();
 	}
 	
-	/**
-	 *
-	 * @return
-	 */
 	@RequestMapping("/edit")
 	public ModelAndView edit(ModelAndView vm){
 		return new ModelAndView("home/job/edit");
+	}
+	
+	@RequestMapping("/save")
+	public void save(Job job){
+		//设置发布时间
+		if(job.getJob_publish()==1) {
+			job.setJob_publish_date(new Date());
+		}else {
+			job.setJob_publish_date(null);
+		}
+		
+		job_service.save(job);
+	}
+	
+	@RequestMapping("/remove")
+	public void remove(Integer id){
+		job_service.delete(id);
 	}
 }

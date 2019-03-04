@@ -45,12 +45,29 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            
+                          	<!-- 分页 -->
+                           	<div class="row">
+                           		<div class="col-sm-6">
+                          			<div id="dataTables-example_info" role="status" aria-live="polite" class="dataTables_info">第{{search.page}}/{{totalPage}}页</div>
+                          		</div>
+                        		<div class="col-sm-6">
+                        			<div id="dataTables-example_paginate" class="dataTables_paginate paging_simple_numbers">
+                        				<ul class="pagination">
+                        					<li aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous" class="paginate_button previous disabled"><a href="#" v-on:click="pre">上一页</a></li>
+                        					<li aria-controls="dataTables-example" tabindex="0" class="paginate_button active"><a href="#">1</a></li>
+                        					<li aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next" class="paginate_button next disabled"><a href="#" v-on:click="next">下一页</a></li>
+                       					</ul>
+                     				</div>
+                     			</div>
+                     		</div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
+                
             </div>
         </div>
         <!-- /#page-wrapper -->
@@ -63,26 +80,49 @@
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
-        $('#dataTables-example').DataTable({
+       /*  $('#dataTables-example').DataTable({
             responsive: true
-        });
+        }); */
         
         var app=new Vue({
         	el:"#app",
         	data:{
         		userList:[],
+        		totalPage:0,
+        		search:{
+        			page:1,
+        			limit:10,
+        		}
         	},
         	beforeCreate: function(){
 				this.$nextTick(function () {
 					initData();
 			    })
-			}  
+			},
+			methods:{
+				//上一页
+				pre:function(){
+					if(this.search.page-1>0){
+						this.search.page-=1;
+						initData();
+					}
+				}
+				//下一页
+				,next:function(){
+					if(this.search.page<this.totalPage){
+						this.search.page+=1;
+						initData();
+					}
+				}
+			}
         });
         
         function initData(){
         	 //获取用户信息
-            $.get('/home/user/all',function(result){
-            	app.userList=result;
+            $.get('/home/user/pageAll',app.search,function(result){
+            	console.log(result);
+            	app.totalPage=result.totalPages;
+            	app.userList=result.content;
         	});
         }
     });
