@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 /**
@@ -21,28 +23,30 @@ import lombok.Data;
 public class Job {
 	
 	@Id
-	@Column()
+	@Column
 	@GeneratedValue
 	private Integer job_id;
 	
-	@Column()
+	@Column
 	private String job_name;
 	
-	@Column()
+	@Column
 	private String job_salary;
 	
-	@Column()
+	@Column
 	private String job_address;
 	
-	@Column()
+	@Column
 	private String job_description;
 	
-	@Column()
+	@Column
+	@DateTimeFormat
 	private Date job_create_date;
 	
-	@Column()
+	@Column
 	private Integer job_publish;
 	
-	@Column()
+	@Column
+	@DateTimeFormat
 	private Date job_publish_date;
 }

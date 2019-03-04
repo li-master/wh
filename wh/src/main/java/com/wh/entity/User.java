@@ -18,12 +18,12 @@ import lombok.Data;
 public class User extends PageLimit{
 	
 	@Id
-	@Column()
+	@Column
 	private Integer u_id;
 	
-	@Column()
+	@Column
 	private String u_name;
 	
-	@Column()
+	@Column
 	private String u_password;
 }
