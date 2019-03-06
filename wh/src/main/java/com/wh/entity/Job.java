@@ -8,7 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -40,13 +41,13 @@ public class Job {
 	private String job_description;
 	
 	@Column
-	@DateTimeFormat
+	@JsonFormat
 	private Date job_create_date;
 	
 	@Column
 	private Integer job_publish;
 	
 	@Column
-	@DateTimeFormat
+	@JsonFormat
 	private Date job_publish_date;
 }
