@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wh.service.JobService;
 import com.wh.service.UserService;
 
 /** 
@@ -24,7 +25,8 @@ public class HtmlController {
 	
 	@Autowired
 	UserService user_service;
-	
+	@Autowired
+	JobService job_service;
 	@RequestMapping("/test")
 	public String html(Model model) {
 		model.addAttribute("user", user_service.findAll());
@@ -34,6 +36,6 @@ public class HtmlController {
 	@RequestMapping("/fuck")
 	@ResponseBody
 	public List htmls(Model model) {
-		return user_service.findAll();
+		return job_service.findAll();
 	}
 }

@@ -12,12 +12,26 @@
 	margin: 0;
 	padding: 0;
 }
+.float-div {
+	display: none;
+	position: absolute;
+	width: 300px;
+	height: 400px;
+	background-color: #ffffff;
+	z-index: 1002;
+	overflow: hidden;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -150px;
+}
+
 
 td {
 	padding-left: 15px;
 	height:80px;
 	padding-right: 30px;
-	text-align: center;
+	
 	vertical-align:middle;
 	border-bottom:1px solid #f8f8f8;
 }
@@ -30,6 +44,11 @@ table {
 ul li {
 	display: inline-block;
 	width: 8%;
+}
+
+.button{
+background-color:yellow;
+width:60px;
 }
 </style>
 
@@ -50,7 +69,7 @@ ul li {
 
 			<li>发布职位</li>
 			<!-- 后台管理或者注册的用户/商家  自主添加工作信息 -->
-			<li>注册登录</li>
+			<li onclick="zcdl();">注册登录</li>
 			<!-- 弹出注册 登录div -->
 		</ul>
 
@@ -71,7 +90,7 @@ ul li {
 	<div style="width: 100%; float: left; height: 400px;background-color:#f8f8f8">
 	
 	
-		<table style="width:20%;height:400px;float:right;background-color:white">
+		<table style="width:20%;height:400px;float:right;background-color:white;text-align: center;">
 	       <tr>
 				<td>销售员&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red">2-5k</span><br/>襄阳牛肉面</td>
 			</tr>  
@@ -87,62 +106,85 @@ ul li {
 	  </table>
 	  
 		<table
-			style="width: 60%; margin: 0 auto;  margin-left: 200px;background-color:white">
+			style="width: 70%; margin: 0 auto;  margin-left: 100px;background-color:white;text-align: center; overflow: auto;border-collapse: separate;">
 			
-			<tr onmouseover="trsover(this);" onmouseout="trsout(this);">
-				<td><span style="color: #5dd5c8">销售员</span>&nbsp;&nbsp;&nbsp;<span
-					style="color: red">2-4k</span><br />洪山区光谷&nbsp;要求</td>
-				<td>今晚十点半有限公司<br />卖肉，民营，50人
-				</td>
-				<td id="thistd" onclick="fuck()">吴晗&nbsp;丨hr<br />发布于1月1日
-				</td>
-			</tr>
-			<tr onmouseover="trsover(this);" onmouseout="trsout(this);">
-				<td>大盘鸡</td>
-				<td>大山</td>
-				<td><img src='/img/warn.png' /></td>
-			</tr>
-			<tr onmouseover="trsover(this);" onmouseout="trsout(this);">
-				<td>黄焖鸡</td>
-				<td>熊超</td>
-				<td><img src='/img/warn.png' /></td>
-			</tr>
-			<tr onmouseover="trsover(this);" onmouseout="trsout(this);">
-				<td>老乡鸡</td>
-				<td>吴晗</td>
-				<td><img src='/img/warn.png' /></td>
-			</tr>
-			<tr onmouseover="trsover(this);" onmouseout="trsout(this);">
-				<td>大盘鸡</td>
-				<td>大山</td>
-				<td><img src='/img/warn.png' /></td>
-			</tr>
+			<tr>
+					<td>工作名称</td>
+					<td >薪资</td>
+					<td>工作要求</td>
+					<td>工作地点</td>
+					<td>发布时间</td>
+					<td>--</td>
+					<td>创建时间</td>
+				</tr>
+			</thread>
+				<tbody id="data">
+				</tbody>
 
 		</table>
 		
-	
 	</div>
 	<!-- <div th:each="u:${user}">
 		<p th:text="${u.u_id}"></p>
 		<p th:text="${u.u_name}"></p>
 	</div> -->
-
-	<script type="text/javascript">
-$(function() {
 	
+<!-- 登录-->
+	<div id="rhtc" class="float-div" style="width: 300px;height: 400px;border:1px black solid;">
+		<div style="width:100%;text-align:center;">
+			<table style="width:100%" id="dlzc">
+			   <tr><td id="dl" style="width:50%;height:67px;" onclick="dl()">登录</td><td style="height:67px;" onclick="zc()" id="zc">注册</td></tr>
+			   <tr><td colspan="2" style="height:67px;"><input value="手机号" style="width:100%;height:30px;text-align:center;"></input></td></tr>
+			    <tr><td colspan="2" style="height:67px;"><input value="密码" style="width:100%;height:30px;text-align:center;"></input></td></tr>
+			    
+			      <tr><td colspan="2" id="yzm" style="display:none;height:67px;"><input value="验证码" style="width:100%;height:30px;text-align:center;"></input></td></tr>
+			    
+			    <tr><td  colspan="2" style="text-align:center;height:67px;display:none" id="xy">请查看网站用户同意协议书</td></tr>
+			     <tr><td  style="height:67px;"><input class="button" type="button"  value="确定"></input></td><td><input type="button" onclick="closedlzc();" class="button" value="取消"></input></td></tr>
+			</table>
+		</div>
+	</div>
+	
+	
+	<!-- 二维码div -->
+	<div id="ewm" class="float-div" style="width: 400px;height: 500px;border:1px black solid;">
+			<p id="cha" style="width:24px;background: url(/img/cls.png);height:24px;float: right;background-color: white;
+	    margin-right: 25px;margin-top: 0px;cursor: pointer;border:1px red solid;" onclick='closeewm();'>
+			</p>
+			<table style="width:300px;height:400px;margin-top:0px;margin-left:50px;border:1px yellow solid;background: url(/img/555.jpg)">
+					<tr>
+						<td></td>
+					</tr>
+			</table>
+	</div>
+	
+	
+	
+	<script type="text/javascript">
+	
+$(function() {
+	fuck();
 
 })
-	
-/*  trover = function(obj) {
-	 $(obj).attr("style", "BACKGROUND-COLOR: #5dd5c8"); 
+	closeewm =function(){
+	  $("#ewm").hide();
+	}
+tdover=function(obj){
+    $(obj).hide();
+    $(obj).next().show();
 }
-trout = function(obj) {
-	$(obj).attr("style", "BACKGROUND-COLOR: white"); 
-}  */
+
+tdout = function(obj) {
+	//$(obj).parent().parent().find(".thistd").show();
+	// $("#thattd").hide();//效果
+	$(obj).hide();
+	$(obj).prev().show();
+}  
+
+
+
 trsover = function(obj) {
 	 $(obj).attr("style", "BACKGROUND-COLOR: #f8f8f8"); 
-	 $("#thistd").html("立即沟通"); 
-	 $("#thistd").css("color",'#6adbcf');
 }
 trsout = function(obj) {
 	$(obj).attr("style", "BACKGROUND-COLOR: white"); /* #f6f6f8 */
@@ -156,16 +198,60 @@ $(window).scroll(function(){//window是原生对象，需要加$转换成jQuery�
    
     
 })
-
-window.onload=function(){
+fuck =function(){
+	
 	$.get('/views/fuck',function(result){
-		result.forEach(val=>{
-			console.log(val.u_id);
-		});
-		//console.log(result);
+		var item=result;
+		var html3="";
+			for(var i=0;i<item.length;i++){
+				html3 += '<tr onmouseover="trsover(this);" onmouseout="trsout(this);">';
+				html3 += '<td>' + item[i].job_name + '</td>';
+				html3 += '<td style="color:red;">' + item[i].job_salary+ '</td>';
+				html3 += '<td>' + item[i].job_description+ '</td>';
+				html3 += '<td>' + item[i].job_address+ '</td>';
+				html3 += '<td>' + item[i].job_create_date+ '</td>';
+				html3 += '<td  style="color:blue" class="thisnowtd" onmouseover="tdover(this);" >' + item[i].job_publish+ '</td>';
+			    html3 += '<td style="display:none" id="thatendtd"   onmouseout="tdout(this);">' + '<span onclick="commit();">'+"立即沟通"+"</span>"+ '</td>'; 
+			    html3 += '<td>' + item[i].job_publish_date+ '</td>';   <!--跑-->
+				html3 += '</tr>';
+			}
+			$("#data").html(html3);
+		var a=""; 
 	});
 }
 
+  commit =function(){
+	  
+	  $("#ewm").show();
+}/*  弹出二维码 */
+  
+/* 注册登录 */
+ zcdl =function(){
+	 $("#rhtc").show(); 
+	 $("#rhtc").css("height","300px");
+	 $("#zc").css("background-color","#cbd5eb");
+	 $("#dl").css("background-color","white");
+}
+dl =function(){
+	 $("#yzm").hide();
+	 $("#xy").hide();
+	 $("#rhtc").css("height","300px");
+	 $("#zc").css("background-color","#cbd5eb");
+	 $("#dl").css("background-color","white");
+	alert("登录");
+}
+zc =function(){
+	 $("#yzm").show();
+	 $("#xy").show();
+	 $("#rhtc").css("height","400px");
+	 $("#dl").css("background-color","#cbd5eb");
+	 $("#zc").css("background-color","white");
+	alert("注册");
+}
+closedlzc =function(){
+	alert("关闭验证");
+	 $("#rhtc").hide(); 
+}
 </script>
 </body>
 </html>
